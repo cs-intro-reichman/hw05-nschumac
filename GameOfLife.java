@@ -12,9 +12,9 @@ public class GameOfLife {
 		//// Uncomment the test that you want to execute, and re-compile.
 		//// (Run one test at a time).
 		/// test1(fileName);
-		//// test2(fileName);
+		test2(fileName);
 		///test3(fileName, 3);
-		play(fileName);
+		//play(fileName);
 	}
 	
 	// Reads the data file and prints the initial board.
@@ -22,6 +22,16 @@ public class GameOfLife {
 		int[][] board = read(fileName);
 		print(board);
 	}
+
+    private static void testCount(int[][] expectedMatrix, int[][] board) {
+        for (int i = 1; i < board.length - 1; ++i) {
+            for (int j = 1; j < board.length - 1; ++j) {
+                if (expectedMatrix[i - 1][j - 1] != count(board, i, j)) {
+                    System.out.printf("Incorrect count at %d %d\n", i, j);
+                }
+            }
+        }
+    }
 		
 	// Reads the data file, and runs a test that checks 
 	// the count and cellValue functions.
@@ -29,6 +39,62 @@ public class GameOfLife {
 		int[][] board = read(fileName);
 		//// Write here code that tests that the count and cellValue functions
 		//// are working properly, and returning the correct values.
+
+        // test by expected on specific Files :shrug:
+        // output will be "" if everything is correct
+        switch (fileName) {
+            case "line.dat":
+                int[][] lineExpectedMatrix = {
+                    {0, 0, 0, 0, 0},
+                    {1, 2, 3, 2, 1},
+                    {1, 1, 2, 1, 1},
+                    {1, 2, 3, 2, 1},
+                    {0, 0, 0, 0, 0}
+                    };
+                testCount(lineExpectedMatrix, board);
+                break;
+            case "pulsar.dat":
+                int[][] pulsarExpectedMatrix = {
+                    {0, 0, 0, 0, 0, 0},
+                    {0, 1, 2, 3, 2, 1},
+                    {1, 3, 4, 4, 2, 1},
+                    {1, 2, 4, 4, 3, 1},
+                    {1, 2, 3, 2, 1, 0},
+                    {0, 0, 0, 0, 0, 0}
+                    };
+                testCount(pulsarExpectedMatrix, board);
+                break;
+            case "square.dat":
+                int[][] squareExpectedMatrix = {
+                    {1, 2, 2, 1},
+                    {2, 3, 3, 2},
+                    {2, 3, 3, 2},
+                    {1, 2, 2, 1}
+                    };
+                testCount(squareExpectedMatrix, board);
+                break;
+            default:
+                
+                break;
+        }
+
+        // Ignore this comment lmao
+        //System.out.println("{");
+        //for (int i = 1; i < board.length - 1; ++i) {
+        //    System.out.printf("{");
+        //    for (int j = 1; j < board[0].length - 1; ++j) {
+        //        System.out.printf("%d", count(board, i, j));
+        //        if (j != board[0].length - 2) {
+        //            System.out.printf(", ");
+        //        }
+        //    }
+        //    System.out.printf("}");
+        //    if (i != board.length - 2) {
+        //        System.out.printf(",");
+        //    }
+        //    System.out.println();
+        //}
+        //System.out.println("}");
 	}
 		
 	// Reads the data file, plays the game for Ngen generations, 
