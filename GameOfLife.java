@@ -1,3 +1,9 @@
+/*
+#feedback
+good work!
+*/
+
+
 /** 
  *  Game of Life.
  *  Usage: "java GameOfLife fileName"
